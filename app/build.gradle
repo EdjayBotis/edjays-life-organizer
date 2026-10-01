@@ -10,8 +10,8 @@ android {
         applicationId 'com.edjay.lifeorganizer'
         minSdk 26
         targetSdk 35
-        versionCode 5
-        versionName '3.7.0'
+        versionCode 6
+        versionName '3.7.1'
     }
 
     signingConfigs {
@@ -28,7 +28,11 @@ android {
 
     buildTypes {
         debug {
-            applicationIdSuffix '.debug'
+            // Keep the same application ID so test builds update the installed app.
+            // When GitHub signing secrets are available, debug is signed with the same release key.
+            if (System.getenv('ANDROID_KEYSTORE_PATH')) {
+                signingConfig signingConfigs.release
+            }
             versionNameSuffix '-debug'
         }
         release {

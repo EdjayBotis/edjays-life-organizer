@@ -79,3 +79,8 @@ V3.7.0 reliability release
 - Android back closes the current sheet/fullscreen or returns to the previous app view before exiting.
 - Native backup export writes JSON to Downloads; Android file picker is enabled for import.
 - Version: 3.7.0 (versionCode 5).
+
+V3.7.1 PATCH
+- Same applicationId: com.edjay.lifeorganizer
+- Debug workflow uses the same signing key when GitHub secrets are configured, so it can update the installed signed app.
+- versionCode 6 / versionName 3.7.1
