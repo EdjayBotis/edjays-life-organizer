@@ -97,3 +97,37 @@ body.dark{--bg:#111923;--card:#182431;--text:#edf4fb;--muted:#9cadbd;--line:#293
 @media(max-width:420px){
   .fullscreen{padding-left:8px;padding-right:8px}.fullbar{padding-left:4px;padding-right:4px}.fullbar h2{font-size:20px;line-height:1.1}.stage{padding:11px}.stage-item{grid-template-columns:minmax(0,1fr) auto;gap:8px}.stage-item-actions{grid-template-columns:118px 36px}.stage-item-actions select{width:118px;height:40px;font-size:11px}.thesis-more{width:36px;height:40px;min-height:40px}.life-grid{gap:9px}.life-tile{min-height:114px!important;padding:13px!important;gap:11px!important}.life-icon{width:36px;height:36px;flex-basis:36px;font-size:22px!important}.quick-secondary .btn{font-size:10px}.schedule-details .list{padding-left:13px!important;padding-right:13px!important}}
 @media(max-width:340px){.stage-item-actions{grid-template-columns:108px 34px}.stage-item-actions select{width:108px}.thesis-more{width:34px}.life-tile{padding:11px!important}.quick-secondary{gap:5px}}
+
+/* V3.7.3 focused polish: consistent icons, centered timer, stable budget headers */
+.nav-item .nav-icon{width:32px!important;height:28px!important;display:grid!important;place-items:center!important;font-size:0!important;line-height:1!important}
+.nav-item .nav-icon svg{width:23px;height:23px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-item[data-view="life"] .nav-icon{font-size:0!important}
+
+/* Keep the existing dumbbell, but center its geometry and quick-action placement. */
+.dumbbell-icon{width:28px;height:6px;border-radius:3px;box-shadow:none!important}
+.dumbbell-icon:before,.dumbbell-icon:after{top:-5px;width:7px;height:16px;box-shadow:none!important;border-radius:3px}
+.dumbbell-icon:before{left:-5px!important}.dumbbell-icon:after{right:-5px!important}
+.quick-grid.primary-actions .q-coral>span.dumbbell-icon{width:28px!important;height:6px!important;min-height:6px!important;margin:0 auto 4px!important;display:block!important;align-self:center!important}
+.quick-grid.primary-actions .q-coral{align-items:center!important;justify-content:center!important}
+
+/* Pencil should look like a mostly vertical writing pencil with a slight tilt. */
+.note-pencil{width:6px!important;height:24px!important;border-radius:2px!important;transform:rotate(18deg)!important;background:currentColor!important;position:relative!important;display:inline-block!important;vertical-align:middle}
+.note-pencil:before{content:''!important;position:absolute!important;left:0!important;top:-4px!important;width:6px!important;height:5px!important;background:#d99a9a!important;border-radius:2px 2px 0 0!important}
+.note-pencil:after{content:''!important;position:absolute!important;left:0!important;right:auto!important;top:auto!important;bottom:-6px!important;width:0!important;height:0!important;border-left:3px solid transparent!important;border-right:3px solid transparent!important;border-top:7px solid currentColor!important;border-bottom:0!important}
+.note-pencil.mini{width:5px!important;height:19px!important;margin-right:5px!important}.note-pencil.mini:before{width:5px!important;height:4px!important;top:-3px!important}.note-pencil.mini:after{bottom:-5px!important;border-left-width:2.5px!important;border-right-width:2.5px!important;border-top-width:6px!important}
+.note-action{align-items:center!important;justify-content:center!important}
+
+/* Money and thesis budget headers scroll naturally instead of looking detached/floating. */
+.money-fullbar,.budget-fullbar{position:static!important;top:auto!important;z-index:auto!important;background:transparent!important;backdrop-filter:none!important;padding:4px 2px 10px!important;margin-bottom:2px}
+.budget-content{display:grid;gap:10px;margin-top:12px}.budget-section{margin-bottom:0!important}.budget-progress-card{margin-top:2px}.budget-counts{margin-top:8px;text-align:center}.other-cost-summary{padding:8px 0;border-bottom:1px solid var(--line)}
+.other-cost-row .row-title,.bom-row .row-title{font-size:14px;font-weight:750}.other-cost-row .row-sub,.bom-row .row-sub{font-size:11px}.bom-actions{display:grid;justify-items:end;gap:6px;min-width:76px}.bom-price{font-size:12px;white-space:nowrap}
+
+/* Center every focus timer control block, including custom time and wrapped actions. */
+.timer-card{display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;text-align:center!important;width:100%}
+.timer-card .timer-ring{flex:0 0 auto}.timer-card .timer-presets{width:100%;justify-content:center!important;overflow-x:auto;padding-left:4px;padding-right:4px}.timer-card .custom-time-row{width:min(100%,300px)!important;margin-left:auto!important;margin-right:auto!important}.timer-card .timer-actions{width:100%;max-width:430px;justify-content:center!important;align-items:center!important;margin-left:auto!important;margin-right:auto!important}.timer-card .timer-help{max-width:390px;margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+
+@media(max-width:420px){
+  .nav-item .nav-icon svg{width:22px;height:22px}
+  .budget-section .list-row{grid-template-columns:30px minmax(0,1fr) auto;gap:8px}.bom-actions{min-width:68px}.bom-actions .btn{padding-left:8px;padding-right:8px}
+  .timer-card{padding-left:12px!important;padding-right:12px!important}.timer-card .timer-actions{gap:8px!important}.timer-card .timer-actions .btn{min-width:0!important;flex:1 1 42%!important}
+}

@@ -47,10 +47,10 @@ jobs:
       - name: Verify update identity
         run: |
           echo "Expected package: com.edjay.lifeorganizer"
-          echo "Version: 3.7.2 (7)"
+          echo "Version: 3.7.3 (8)"
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: Edjays-Life-Organizer-v3.7.2-test-signed
+          name: Edjays-Life-Organizer-v3.7.3-test-signed
           path: app/build/outputs/apk/debug/app-debug.apk
