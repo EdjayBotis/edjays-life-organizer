@@ -162,3 +162,24 @@ body.dark{--bg:#111923;--card:#182431;--text:#edf4fb;--muted:#9cadbd;--line:#293
 .note-action{gap:3px!important;}
 .money-budget-category{padding:8px 0;border-bottom:1px solid var(--line);gap:10px;}
 .money-budget-category:last-child{border-bottom:0;}
+
+
+/* V3.7.6 money navigation, backup alignment, and normalized pencil icons. */
+.backup-import-btn{display:flex!important;align-items:center!important;justify-content:center!important;text-align:center!important;min-height:44px!important;line-height:1.15!important;padding-top:10px!important;padding-bottom:10px!important}
+.pencil-svg{display:block;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.pencil-svg.mini{width:13px!important;height:13px!important;min-width:13px!important;min-height:13px!important;transform:rotate(-5deg);transform-origin:center}
+.pencil-svg.quick{width:18px!important;height:18px!important;transform:rotate(-5deg);transform-origin:center}
+.pencil-svg.life{width:19px!important;height:19px!important;transform:rotate(-5deg);transform-origin:center}
+.note-action{display:flex!important;align-items:center!important;justify-content:center!important;gap:5px!important}
+.note-action>span:last-child{line-height:1!important}
+.note-section-icon{display:grid!important;place-items:center!important}
+.quick-inline-icon{display:grid!important;place-items:center!important;min-height:34px}
+/* Disable old CSS-pencil boxes when legacy markup appears. */
+.note-pencil{display:none!important}
+.money-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.money-overview-grid .stat-link{appearance:none;border:0;text-align:left;width:100%;cursor:pointer}
+.money-big-link{appearance:none;border:0;background:transparent;color:inherit;width:100%;padding:4px 0 0;text-align:left;display:flex;flex-direction:column;gap:4px}
+.money-big-link small{color:var(--muted);font-size:11px}
+.money-equation{display:grid;gap:8px}.money-equation>div{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line)}.money-equation-total{font-size:15px;font-weight:800;border-bottom:0!important}.money-equation.secondary{margin-top:10px;padding-top:4px;border-top:1px dashed var(--line)}
+.income-source-row{display:grid;grid-template-columns:minmax(0,1fr) 38px;gap:7px;align-items:stretch;padding:5px 0;border-bottom:1px solid var(--line)}.income-source-row:last-child{border-bottom:0}.income-source-use{appearance:none;border:0;background:transparent;color:inherit;text-align:left;padding:7px 4px;display:flex;justify-content:space-between;align-items:center;gap:10px;min-width:0}.income-source-use>span:first-child{min-width:0;display:flex;flex-direction:column;gap:2px}.income-source-use b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.income-source-use small{color:var(--muted);font-size:10px}.income-source-amount{display:flex;flex-direction:column;align-items:flex-end;white-space:nowrap;font-weight:750}.income-source-more{width:38px!important;height:40px!important;align-self:center;font-size:22px!important}
+@media(max-width:360px){.pencil-svg.mini{width:12px!important;height:12px!important;min-width:12px!important;min-height:12px!important}.pencil-svg.life{width:18px!important;height:18px!important}.money-overview-grid{gap:7px!important}.money-overview-grid .stat{padding:10px!important}.income-source-row{grid-template-columns:minmax(0,1fr) 36px}}

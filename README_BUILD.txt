@@ -1,102 +1,35 @@
-Edjay's Life Organizer V3.6 - Android build notes
-
-V3.6 fixes:
-- Thesis cost bar now reacts immediately to BOM purchased/unpurchased toggles.
-- Purchased BOM items without an entered actual cost use planned cost for the live spent/used bar until an actual cost is entered.
-- My Stats cards now open Thesis, Money, Tasks, and a Needs Attention inventory filter directly.
-- Routine circles are directly checkable/undoable.
-- Thesis progress refreshes underlying tabs immediately.
-- Faster Android mind-map panning.
-- Clearer Life icons for clothes, food and health.
-- Full Schedule stays expanded while updating multiple items.
-- Today-at-a-Glance stats jump to their related section.
-- Thesis Open Budget jumps directly to the detailed BOM.
-- Saved reminders now schedule real native Android alarms.
-- Notification Settings includes permission diagnostics and a 10-second test.
-
-EDJAY'S LIFE ORGANIZER — ANDROID V3.4
+EDJAY'S LIFE ORGANIZER — ANDROID V3.7.6
 
 VERSION
-- versionName: 3.7.0
-- versionCode: 4
+- applicationId: com.edjay.lifeorganizer
+- versionName: 3.7.6
+- versionCode: 11
 
-WHAT IS INCLUDED
-- Existing V3.3 web UI preserved inside Android WebView.
-- Proper launcher icon resources generated from the existing app icon.
-- Native exact-time Android alarms.
-- Vibration support.
-- Auto-No timeout: 3 / 5 / 10 / 15 / 30 minutes / Never.
-- Normal schedule notification: YES | NO.
-- Workout notification: YES | NO | RESCHEDULE.
-- Thesis notification: START | NOT NOW.
-- Notification actions are stored even when the UI is closed and synced into the app when it opens.
-- Separate debug and signed-release GitHub Actions workflows.
+THIS PATCH
+- Import Backup text is vertically centered.
+- Quick Action Note and Life Notes use a compact outline pencil icon sized to match nearby icons.
+- Money Snapshot values are tappable and open the related Money section.
+- Current Money = sum of account/wallet balances.
+- Net Worth = Current Money - outstanding credit/payables including fees.
+- Available After Listed Bills = Net Worth - one listed budget amount for each current bill.
+- Savings is an earmark inside Current Money and is not added again to Net Worth.
+- Income Sources are functional: tap to record income; add/edit/delete saved sources.
+- Money overview cards link to Accounts, Net Worth, Allowance/Savings, Credit, and Bills.
+
+SIGNING / UPDATE IDENTITY
+Both GitHub debug/test and release workflows use the same applicationId and require the permanent signing key in GitHub Actions secrets. Keep using the same keystore forever so future APKs install as updates.
+
+Required GitHub secrets:
+- ANDROID_KEYSTORE_BASE64
+- ANDROID_STORE_PASSWORD
+- ANDROID_KEY_ALIAS
+- ANDROID_KEY_PASSWORD
 
 DEBUG BUILD
-The GitHub workflow .github/workflows/build-debug.yml runs on pushes to main.
-Artifact: Edjays-Life-Organizer-v3.4.0-debug
-APK: app-debug.apk
+Actions > Build Debug APK. The workflow refuses to build without the permanent signing secrets.
 
-SIGNED RELEASE BUILD
-The release workflow requires one permanent signing keystore. Keep this keystore and its passwords forever. Future APK updates must be signed with the same key.
+SIGNED RELEASE
+Actions > Build Signed Release APK. Release builds use the same permanent signing key.
 
-1. Create the keystore once on Windows (Java/JDK required):
-   keytool -genkeypair -v -keystore edjay-release.jks -alias edjay -keyalg RSA -keysize 2048 -validity 10000
-
-2. Convert the keystore to Base64. From PowerShell in this project:
-   .\tools\encode-keystore.ps1 -KeystorePath "C:\path\to\edjay-release.jks"
-
-3. In GitHub repository: Settings > Secrets and variables > Actions > New repository secret.
-   Create these four secrets:
-   ANDROID_KEYSTORE_BASE64  = Base64 text copied by the PowerShell helper
-   ANDROID_STORE_PASSWORD   = keystore password
-   ANDROID_KEY_ALIAS        = edjay (or the alias you chose)
-   ANDROID_KEY_PASSWORD     = key password
-
-4. Open Actions > Build Signed Release APK > Run workflow.
-   Artifact: Edjays-Life-Organizer-v3.4.0-release
-
-IMPORTANT FOR THE FIRST RELEASE INSTALL
-Earlier debug APKs may have the same application ID but a different signing key. Android will reject a signed release APK as an update to an APK signed with the debug key. Back up app data first, uninstall the old debug APK if Android reports a signature conflict, then install the V3.4 signed release. After that, future signed releases using this same keystore can install over the previous release normally.
-
-NOTIFICATION MEANING
-- Normal: YES marks the schedule item Done; NO marks it Missed.
-- Workout: YES marks the workout Completed and awards workout XP; NO marks Missed and applies the workout miss penalty; RESCHEDULE marks it Rescheduled with no miss penalty.
-- Thesis: START marks the scheduled thesis session Started; NOT NOW records Not Now without claiming completion. An ignored notification still follows the configured Auto-No timeout.
-
-APK SHARING
-You may share the signed release APK directly with friends. Android may ask them to allow installation from the browser/file manager because the APK is not coming from Google Play.
-
-V3.7.0 reliability release
-- Fixed Add Account and Add Bill.
-- Need Attention filters are tappable.
-- Inventory category is a controlled dropdown.
-- Money allocation is hierarchical: allowance -> spendable + savings; savings -> emergency + leisure/gala, capped at 100%.
-- Workout save refreshes immediately; workout sessions have Pause/Resume/Stop and leave warnings.
-- Focus timer has live circular progress, Pause/Resume/Stop, and thesis-session accomplishment review.
-- Thesis session completion raises an Android review notification and links back to unfinished roadmap items.
-- Removed manual Personal Node controls from the automatic Mind Map.
-- Android back closes the current sheet/fullscreen or returns to the previous app view before exiting.
-- Native backup export writes JSON to Downloads; Android file picker is enabled for import.
-- Version: 3.7.0 (versionCode 5).
-
-V3.7.3 PATCH
-- Same applicationId: com.edjay.lifeorganizer
-- Debug workflow uses the same signing key when GitHub secrets are configured, so it can update the installed signed app.
-- versionCode 8 / versionName 3.7.3
-
-
-V3.7.3 update identity:
-- applicationId: com.edjay.lifeorganizer
-- versionCode: 8
-- Debug/test workflow refuses to build unless the permanent signing secrets exist.
-- Test and release APKs therefore use the same package ID and permanent signing key for update compatibility.
-
-
-V3.7.4 PATCH
-- versionCode 9 / versionName 3.7.4
-- compact writing-style Note pencil icon
-- Current Money / My Stats now refresh immediately after allowance, transfer and credit/account changes
-- Money Overview with current money, savings, credit and monthly bills
-- quick Add Income / Add Expense / Transfer controls
-- recent transaction history
+IMPORTANT
+Never commit the .jks file, keystore Base64 text, or signing passwords to the repository.
