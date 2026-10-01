@@ -134,3 +134,31 @@ body.dark{--bg:#111923;--card:#182431;--text:#edf4fb;--muted:#9cadbd;--line:#293
 
 /* V3.7.4 money overview + compact note icon polish. */
 .money-overview-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.money-overview-grid .stat{min-width:0}.money-overview-grid .stat b{font-size:17px}.money-quick-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}.money-quick-actions .btn{min-width:0;padding-left:8px;padding-right:8px}.transaction-row{padding:9px 0;border-bottom:1px solid var(--line);gap:10px}.transaction-row:last-child{border-bottom:0}.tx-income{color:var(--accent)}.tx-expense{color:var(--danger)}@media(max-width:360px){.money-quick-actions{grid-template-columns:1fr 1fr}.money-quick-actions .btn:last-child{grid-column:1/-1}.note-action .note-pencil.mini{transform:rotate(26deg)}}
+
+
+/* V3.7.5 hotfix: compact writing-pencil icon and money runtime styling. */
+.note-action .note-pencil.mini{
+  width:3px!important;
+  height:12px!important;
+  min-width:3px!important;
+  min-height:12px!important;
+  margin:0 5px 0 0!important;
+  transform:rotate(14deg)!important;
+  transform-origin:50% 70%!important;
+  border-radius:1.5px!important;
+}
+.note-action .note-pencil.mini:before{
+  width:3px!important;
+  height:3px!important;
+  top:-2px!important;
+  border-radius:1px 1px 0 0!important;
+}
+.note-action .note-pencil.mini:after{
+  bottom:-4px!important;
+  border-left-width:1.5px!important;
+  border-right-width:1.5px!important;
+  border-top-width:4px!important;
+}
+.note-action{gap:3px!important;}
+.money-budget-category{padding:8px 0;border-bottom:1px solid var(--line);gap:10px;}
+.money-budget-category:last-child{border-bottom:0;}
