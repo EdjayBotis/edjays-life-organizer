@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no" />
+  <meta name="theme-color" content="#f6faf7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>Edjay's Life Organizer</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <header class="topbar">
+      <div>
+        <div class="brand"><span>Edjay's Life Organizer</span></div>
+        <div class="tagline">Plan • Do • Grow • A Better Me Everyday</div>
+      </div>
+      <button class="icon-btn profile-btn" id="profileBtn" aria-label="Open profile">E</button>
+    </header>
+
+    <main id="view" class="view" aria-live="polite"></main>
+
+    <button id="fab" class="fab" aria-label="Quick add">＋</button>
+
+    <nav class="bottom-nav" aria-label="Main navigation">
+      <button data-view="today" class="nav-item active"><span>⌂</span><small>Today</small></button>
+      <button data-view="tasks" class="nav-item"><span>✓</span><small>Tasks</small></button>
+      <button data-view="plan" class="nav-item"><span>◫</span><small>Plan</small></button>
+      <button data-view="life" class="nav-item"><span>◎</span><small>Life</small></button>
+    </nav>
+  </div>
+
+  <div id="sheetBackdrop" class="backdrop hidden"></div>
+  <section id="sheet" class="sheet hidden" role="dialog" aria-modal="true">
+    <div class="sheet-grabber"></div>
+    <div class="sheet-head">
+      <h2 id="sheetTitle">Quick Add</h2>
+      <button class="icon-btn" id="closeSheet">✕</button>
+    </div>
+    <div id="sheetBody"></div>
+  </section>
+
+  <div id="fullscreen" class="fullscreen hidden" role="dialog" aria-modal="true">
+    <div id="fullscreenBody"></div>
+  </div>
+
+  <script src="level-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
