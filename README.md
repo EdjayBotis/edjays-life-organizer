@@ -1,4 +1,4 @@
-EDJAY'S LIFE ORGANIZER — ANDROID PROJECT
+**EDJAY'S LIFE ORGANIZER**
 
 This project embeds the V3.3 offline web app directly inside an Android WebView.
 No UI redesign is involved.
