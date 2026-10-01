@@ -91,3 +91,12 @@ V3.7.3 update identity:
 - versionCode: 8
 - Debug/test workflow refuses to build unless the permanent signing secrets exist.
 - Test and release APKs therefore use the same package ID and permanent signing key for update compatibility.
+
+
+V3.7.4 PATCH
+- versionCode 9 / versionName 3.7.4
+- compact writing-style Note pencil icon
+- Current Money / My Stats now refresh immediately after allowance, transfer and credit/account changes
+- Money Overview with current money, savings, credit and monthly bills
+- quick Add Income / Add Expense / Transfer controls
+- recent transaction history
