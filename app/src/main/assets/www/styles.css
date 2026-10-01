@@ -49,3 +49,5 @@ body.dark{--bg:#111923;--card:#182431;--text:#edf4fb;--muted:#9cadbd;--line:#293
 .map-wrap{overscroll-behavior:contain}
 @media (pointer:coarse){.map-wrap{height:72vh}.node rect{stroke-width:2.4}.schedule-details summary{min-height:58px}.check{min-width:30px;min-height:30px}}
 .notif-diag{margin-top:8px;padding:10px 11px;border-radius:12px;background:#f7faf8;border:1px solid var(--line);font-size:11px;line-height:1.5;color:var(--muted)}
+
+.stats-progress-link{appearance:none;display:block;width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:0;margin:0;cursor:pointer;font:inherit}.stats-progress-link:active{opacity:.78}

@@ -1,6 +1,9 @@
-Edjay's Life Organizer V3.5 - Android build notes
+Edjay's Life Organizer V3.6 - Android build notes
 
-V3.5 fixes:
+V3.6 fixes:
+- Thesis cost bar now reacts immediately to BOM purchased/unpurchased toggles.
+- Purchased BOM items without an entered actual cost use planned cost for the live spent/used bar until an actual cost is entered.
+- My Stats cards now open Thesis, Money, Tasks, and a Needs Attention inventory filter directly.
 - Routine circles are directly checkable/undoable.
 - Thesis progress refreshes underlying tabs immediately.
 - Faster Android mind-map panning.
@@ -14,8 +17,8 @@ V3.5 fixes:
 EDJAY'S LIFE ORGANIZER — ANDROID V3.4
 
 VERSION
-- versionName: 3.4.0
-- versionCode: 2
+- versionName: 3.6.0
+- versionCode: 4
 
 WHAT IS INCLUDED
 - Existing V3.3 web UI preserved inside Android WebView.
