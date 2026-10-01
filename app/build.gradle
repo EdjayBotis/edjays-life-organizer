@@ -10,8 +10,8 @@ android {
         applicationId 'com.edjay.lifeorganizer'
         minSdk 26
         targetSdk 35
-        versionCode 4
-        versionName '3.6.0'
+        versionCode 5
+        versionName '3.7.0'
     }
 
     signingConfigs {

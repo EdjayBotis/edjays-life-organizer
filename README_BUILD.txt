@@ -17,7 +17,7 @@ V3.6 fixes:
 EDJAY'S LIFE ORGANIZER — ANDROID V3.4
 
 VERSION
-- versionName: 3.6.0
+- versionName: 3.7.0
 - versionCode: 4
 
 WHAT IS INCLUDED
@@ -66,3 +66,16 @@ NOTIFICATION MEANING
 
 APK SHARING
 You may share the signed release APK directly with friends. Android may ask them to allow installation from the browser/file manager because the APK is not coming from Google Play.
+
+V3.7.0 reliability release
+- Fixed Add Account and Add Bill.
+- Need Attention filters are tappable.
+- Inventory category is a controlled dropdown.
+- Money allocation is hierarchical: allowance -> spendable + savings; savings -> emergency + leisure/gala, capped at 100%.
+- Workout save refreshes immediately; workout sessions have Pause/Resume/Stop and leave warnings.
+- Focus timer has live circular progress, Pause/Resume/Stop, and thesis-session accomplishment review.
+- Thesis session completion raises an Android review notification and links back to unfinished roadmap items.
+- Removed manual Personal Node controls from the automatic Mind Map.
+- Android back closes the current sheet/fullscreen or returns to the previous app view before exiting.
+- Native backup export writes JSON to Downloads; Android file picker is enabled for import.
+- Version: 3.7.0 (versionCode 5).

@@ -51,3 +51,12 @@ body.dark{--bg:#111923;--card:#182431;--text:#edf4fb;--muted:#9cadbd;--line:#293
 .notif-diag{margin-top:8px;padding:10px 11px;border-radius:12px;background:#f7faf8;border:1px solid var(--line);font-size:11px;line-height:1.5;color:var(--muted)}
 
 .stats-progress-link{appearance:none;display:block;width:100%;border:0;background:transparent;color:inherit;text-align:left;padding:0;margin:0;cursor:pointer;font:inherit}.stats-progress-link:active{opacity:.78}
+
+/* V3.7 reliability + interaction polish */
+.quick-timer span{font-size:30px;line-height:1}.timer-ring{background:conic-gradient(#1fb77f var(--timer-pct,0%),#e9f0ed 0)}
+.timer-actions{gap:10px;flex-wrap:wrap}.timer-help{margin-top:18px}.workout-actions{gap:9px;flex-wrap:wrap}.workout-actions .btn{min-width:96px}
+.thesis-accomplish{max-height:52vh;overflow:auto;margin:10px 0}.thesis-accomplish input{width:20px;height:20px;flex:0 0 auto}
+.fullbar{position:sticky;top:0;z-index:4;background:var(--bg);padding-top:8px}.fullscreen .card{max-width:100%}
+.schedule-details .list-row{align-items:center}.schedule-details .list-row>div{min-width:0}.schedule-details .row-title,.schedule-details .row-sub{overflow-wrap:anywhere}
+#sheetBody,#fullscreenBody{min-width:0}.profile-grid,.stat-grid,.grid2,.grid3{min-width:0}
+@media(max-width:360px){.timer-actions .btn,.workout-actions .btn{flex:1 1 42%}.fullbar{gap:8px}.schedule-details .list{padding-left:12px;padding-right:12px}}

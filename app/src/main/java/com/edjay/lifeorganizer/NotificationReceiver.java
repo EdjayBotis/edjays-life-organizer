@@ -69,6 +69,8 @@ public class NotificationReceiver extends BroadcastReceiver {
         } else if ("thesis".equals(kind)) {
             b.addAction(new Notification.Action.Builder(null, "START", actionPi(context, tag, kind, "start")).build());
             b.addAction(new Notification.Action.Builder(null, "NOT NOW", actionPi(context, tag, kind, "not_now")).build());
+        } else if ("thesis-review".equals(kind)) {
+            b.addAction(new Notification.Action.Builder(null, "REVIEW", actionPi(context, tag, kind, "review")).build());
         } else {
             b.addAction(new Notification.Action.Builder(null, "YES", actionPi(context, tag, kind, "yes")).build());
             b.addAction(new Notification.Action.Builder(null, "NO", actionPi(context, tag, kind, "no")).build());

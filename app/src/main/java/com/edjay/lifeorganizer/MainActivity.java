@@ -11,9 +11,16 @@ import android.webkit.*;
 import android.widget.Toast;
 import org.json.JSONObject;
 import android.util.Log;
+import android.content.ContentValues;
+import android.provider.MediaStore;
+import android.webkit.ValueCallback;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 
 public class MainActivity extends Activity {
     private WebView webView;
+    private ValueCallback<Uri[]> filePathCallback;
+    private static final int FILE_CHOOSER_REQUEST = 44;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,15 @@ public class MainActivity extends Activity {
         webView.setWebViewClient(new WebViewClient() {
             @Override public void onPageFinished(WebView view, String url) { deliverPendingActions(); }
         });
+        webView.setWebChromeClient(new WebChromeClient() {
+            @Override public boolean onShowFileChooser(WebView webView, ValueCallback<Uri[]> callback, FileChooserParams params) {
+                if (filePathCallback != null) filePathCallback.onReceiveValue(null);
+                filePathCallback = callback;
+                Intent intent = params.createIntent();
+                try { startActivityForResult(intent, FILE_CHOOSER_REQUEST); return true; }
+                catch (Exception e) { filePathCallback = null; Toast.makeText(MainActivity.this, "Could not open file picker.", Toast.LENGTH_LONG).show(); return false; }
+            }
+        });
         webView.loadUrl("file:///android_asset/www/index.html");
         requestNotificationPermission();
     }
@@ -41,8 +57,29 @@ public class MainActivity extends Activity {
     }
 
     @Override public void onBackPressed() {
+        if (webView == null) { super.onBackPressed(); return; }
+        webView.evaluateJavascript("window.__handleAndroidBack ? window.__handleAndroidBack() : false", value -> {
+            boolean handled = "true".equals(value);
+            if (!handled) {
+                if (webView.canGoBack()) webView.goBack();
+                else fallbackBack();
+            }
+        });
+    }
+
+    private void fallbackBack() {
         if (webView != null && webView.canGoBack()) webView.goBack();
         else super.onBackPressed();
+    }
+
+    @Override protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == FILE_CHOOSER_REQUEST && filePathCallback != null) {
+            Uri[] results = null;
+            if (resultCode == RESULT_OK && data != null && data.getData() != null) results = new Uri[]{data.getData()};
+            filePathCallback.onReceiveValue(results);
+            filePathCallback = null;
+        }
     }
 
     private void requestNotificationPermission() {
@@ -113,6 +150,23 @@ public class MainActivity extends Activity {
                 o.put("exactAlarms", exactAllowed);
                 return o.toString();
             } catch (Exception e) { return "{}"; }
+        }
+
+        @JavascriptInterface public boolean saveBackup(String json, String filename) {
+            try {
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.Downloads.DISPLAY_NAME, filename);
+                values.put(MediaStore.Downloads.MIME_TYPE, "application/json");
+                if (Build.VERSION.SDK_INT >= 29) values.put(MediaStore.Downloads.RELATIVE_PATH, "Download/Edjays Life Organizer");
+                Uri uri = getContentResolver().insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+                if (uri == null) return false;
+                try (OutputStream out = getContentResolver().openOutputStream(uri)) {
+                    if (out == null) return false;
+                    out.write(json.getBytes(StandardCharsets.UTF_8));
+                }
+                runOnUiThread(() -> Toast.makeText(MainActivity.this, "Backup saved to Downloads.", Toast.LENGTH_LONG).show());
+                return true;
+            } catch (Exception e) { Log.e("EdjayBackup", "Backup export failed", e); return false; }
         }
 
         @JavascriptInterface public void cancelNotification(String tag) {
