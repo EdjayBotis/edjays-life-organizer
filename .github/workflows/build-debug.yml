@@ -23,10 +23,17 @@ jobs:
         with:
           gradle-version: '8.9'
 
-      - name: Restore signing keystore
+      - name: Restore permanent signing keystore
         env:
           KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
+          if [ -z "$KEYSTORE_B64" ] || [ -z "$STORE_PASSWORD" ] || [ -z "$KEY_ALIAS" ] || [ -z "$KEY_PASSWORD" ]; then
+            echo "Signing secrets are missing. Refusing to create an APK with a different debug key."
+            exit 1
+          fi
           echo "$KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/edjay-release.jks"
 
       - name: Build debug APK
@@ -37,8 +44,13 @@ jobs:
           ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: gradle assembleDebug
 
+      - name: Verify update identity
+        run: |
+          echo "Expected package: com.edjay.lifeorganizer"
+          echo "Version: 3.7.2 (7)"
+
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: Edjays-Life-Organizer-v3.7.1-debug
+          name: Edjays-Life-Organizer-v3.7.2-test-signed
           path: app/build/outputs/apk/debug/app-debug.apk

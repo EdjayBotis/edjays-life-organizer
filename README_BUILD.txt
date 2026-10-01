@@ -80,7 +80,14 @@ V3.7.0 reliability release
 - Native backup export writes JSON to Downloads; Android file picker is enabled for import.
 - Version: 3.7.0 (versionCode 5).
 
-V3.7.1 PATCH
+V3.7.2 PATCH
 - Same applicationId: com.edjay.lifeorganizer
 - Debug workflow uses the same signing key when GitHub secrets are configured, so it can update the installed signed app.
-- versionCode 6 / versionName 3.7.1
+- versionCode 7 / versionName 3.7.2
+
+
+V3.7.2 update identity:
+- applicationId: com.edjay.lifeorganizer
+- versionCode: 7
+- Debug/test workflow refuses to build unless the permanent signing secrets exist.
+- Test and release APKs therefore use the same package ID and permanent signing key for update compatibility.

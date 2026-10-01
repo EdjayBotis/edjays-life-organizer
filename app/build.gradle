@@ -10,8 +10,8 @@ android {
         applicationId 'com.edjay.lifeorganizer'
         minSdk 26
         targetSdk 35
-        versionCode 6
-        versionName '3.7.1'
+        versionCode 7
+        versionName '3.7.2'
     }
 
     signingConfigs {
@@ -33,7 +33,6 @@ android {
             if (System.getenv('ANDROID_KEYSTORE_PATH')) {
                 signingConfig signingConfigs.release
             }
-            versionNameSuffix '-debug'
         }
         release {
             minifyEnabled false
