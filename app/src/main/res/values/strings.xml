@@ -1,7 +1,3 @@
 <resources>
-<<<<<<< HEAD
     <string name="app_name">Edjay\'s Life Organizer</string>
-=======
-    <string name="app_name">Edjay’s Life Organizer</string>
->>>>>>> db45717 (Update to V3.6 BOM and stats fixes)
 </resources>
