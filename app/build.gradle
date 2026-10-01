@@ -1,0 +1,42 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.edjay.lifeorganizer'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.edjay.lifeorganizer'
+        minSdk 26
+        targetSdk 35
+        versionCode 3
+        versionName '3.5.0'
+    }
+
+    signingConfigs {
+        release {
+            def storeFilePath = System.getenv('ANDROID_KEYSTORE_PATH')
+            if (storeFilePath) {
+                storeFile file(storeFilePath)
+                storePassword System.getenv('ANDROID_STORE_PASSWORD')
+                keyAlias System.getenv('ANDROID_KEY_ALIAS')
+                keyPassword System.getenv('ANDROID_KEY_PASSWORD')
+            }
+        }
+    }
+
+    buildTypes {
+        debug {
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+        release {
+            minifyEnabled false
+            shrinkResources false
+            if (System.getenv('ANDROID_KEYSTORE_PATH')) {
+                signingConfig signingConfigs.release
+            }
+        }
+    }
+}
